@@ -18,18 +18,27 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent   # raíz del repositorio
 
+
+def _env(nombre: str, defecto: str = "") -> str:
+    """Lee una variable de entorno y quita espacios y saltos de línea.
+
+    Al copiar y pegar un secret es fácil que se cuele un salto de línea al
+    final; sin este strip la URL o el token quedan inválidos.
+    """
+    return os.getenv(nombre, defecto).strip()
+
 # --- InfluxDB 2.x -----------------------------------------------------------
-INFLUX_URL = os.getenv("INFLUX_URL", "")            # p.ej. https://us-east-1-1.aws.cloud2.influxdata.com
-INFLUX_TOKEN = os.getenv("INFLUX_TOKEN", "")
-INFLUX_ORG = os.getenv("INFLUX_ORG", "")
-INFLUX_BUCKET = os.getenv("INFLUX_BUCKET", "")
+INFLUX_URL = _env("INFLUX_URL")            # p.ej. https://us-east-1-1.aws.cloud2.influxdata.com
+INFLUX_TOKEN = _env("INFLUX_TOKEN")
+INFLUX_ORG = _env("INFLUX_ORG")
+INFLUX_BUCKET = _env("INFLUX_BUCKET")
 
 # Qué serie se consulta dentro del bucket
-INFLUX_MEASUREMENT = os.getenv("INFLUX_MEASUREMENT", "")   # p.ej. "sensores"
-INFLUX_FIELD = os.getenv("INFLUX_FIELD", "")               # p.ej. "temperatura"
+INFLUX_MEASUREMENT = _env("INFLUX_MEASUREMENT")   # p.ej. "sensores"
+INFLUX_FIELD = _env("INFLUX_FIELD")               # p.ej. "temperatura"
 # Filtro opcional por tag (p.ej. INFLUX_TAG_KEY=device, INFLUX_TAG_VALUE=esp32_01)
-INFLUX_TAG_KEY = os.getenv("INFLUX_TAG_KEY", "")
-INFLUX_TAG_VALUE = os.getenv("INFLUX_TAG_VALUE", "")
+INFLUX_TAG_KEY = _env("INFLUX_TAG_KEY")
+INFLUX_TAG_VALUE = _env("INFLUX_TAG_VALUE")
 
 # --- Modelo -----------------------------------------------------------------
 MODEL_PATH = Path(os.getenv("MODEL_PATH", BASE_DIR / "models" / "sarima_config.json"))
