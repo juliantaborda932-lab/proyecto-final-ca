@@ -34,8 +34,8 @@ INFLUX_ORG = _env("INFLUX_ORG")
 INFLUX_BUCKET = _env("INFLUX_BUCKET")
 
 # Qué serie se consulta dentro del bucket
-INFLUX_MEASUREMENT = _env("INFLUX_MEASUREMENT")   # p.ej. "sensores"
-INFLUX_FIELD = _env("INFLUX_FIELD")               # p.ej. "temperatura"
+INFLUX_MEASUREMENT = _env("INFLUX_MEASUREMENT", "Server")   # p.ej. "sensores"
+INFLUX_FIELD = _env("INFLUX_FIELD", "Consumo_total")               # p.ej. "temperatura"
 # Filtro opcional por tag (p.ej. INFLUX_TAG_KEY=device, INFLUX_TAG_VALUE=esp32_01)
 INFLUX_TAG_KEY = _env("INFLUX_TAG_KEY")
 INFLUX_TAG_VALUE = _env("INFLUX_TAG_VALUE")
