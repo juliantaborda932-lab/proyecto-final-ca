@@ -1,0 +1,26 @@
+# Credenciales: nunca dentro de la imagen
+.env
+.env.*
+!.env.example
+
+# Control de versiones y entorno de desarrollo
+.git
+.gitignore
+.github
+.devcontainer
+.vscode
+
+# Notebooks y archivos que no necesita la API
+notebooks/
+scripts/
+pruebas.http
+README.md
+Dockerfile
+.dockerignore
+
+# Cachés de Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
