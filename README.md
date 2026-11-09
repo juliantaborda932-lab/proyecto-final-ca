@@ -1,5 +1,22 @@
 # Proyecto final · Pronóstico de series de tiempo en producción
 
+## Video
+
+🎥 **Enlace al video:** _(pendiente: pegar aquí el enlace de YouTube no listado o Google Drive)_
+
+## Mi implementación
+
+**Autor:** Julián Taborda Bedoya · Computación Avanzada, Institución Universitaria Pascual Bravo
+
+- **Serie:** bucket `Consumo_elec`, measurement `Server`, field `Consumo_total`, promedio horario.
+- **Modelo:** SARIMA(2,0,2)×(0,1,1,24), elegido por AIC entre 36 combinaciones, entrenado con 720 horas (10 oct – 9 nov 2026).
+- **Evaluación (últimas 24 h):** MAE 50,9 · RMSE 65,1 · MAPE 19,0 %, frente a MAE 105,9 · MAPE 38,6 % de la línea base ingenua estacional.
+- **Frontend:** gráfica con histórico, pronóstico e intervalo de confianza (80/90/95 %); horas en Colombia; indicadores de próxima hora, máximo, mínimo y último dato; control de 1 a 72 horas; mensaje claro si la API falla.
+- **Contenedor:** `python:3.12-slim`; la imagen solo lleva `app/`, `frontend/` y `models/`. Las credenciales se pasan con `-e` al ejecutar (`.dockerignore` excluye `.env`).
+- **Ajuste a la API:** `app/config.py` quita espacios y saltos de línea de las variables de entorno, para que un secret pegado con un salto de línea final no rompa la conexión.
+
+---
+
 **Computación Avanzada — Cierre del curso**
 
 Vas a construir un servicio web que pronostica las próximas horas de una variable medida por sensores. Los datos vienen de **InfluxDB**, el modelo es un **SARIMA** que tú entrenas en **Google Colab**, la API está hecha en **FastAPI** y todo corre en **GitHub Codespaces**. Al final lo empaquetas en un **contenedor Docker**.
