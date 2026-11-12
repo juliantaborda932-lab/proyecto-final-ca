@@ -2,7 +2,7 @@
 
 ## Video
 
-🎥 **Enlace al video:** _(pendiente: pegar aquí el enlace de YouTube no listado o Google Drive)_
+🎥 **Enlace al video:** https://youtu.be/4WR9jaRc7K8
 
 ## Mi implementación
 
